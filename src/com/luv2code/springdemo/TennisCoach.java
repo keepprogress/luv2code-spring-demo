@@ -8,4 +8,10 @@ public class TennisCoach implements Coach {
 		return "Hit the ball as fast as tabletennis can do";
 	}
 
+	@Override
+	public String getDailyFortune() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
