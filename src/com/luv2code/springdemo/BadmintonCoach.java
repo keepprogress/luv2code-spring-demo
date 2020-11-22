@@ -12,13 +12,11 @@ public class BadmintonCoach implements Coach {
 
 	@Override
 	public String getDailyWorkout() {
-		// TODO Auto-generated method stub
 		return "Hit the ball like vocano";
 	}
 
 	@Override
 	public String getDailyFortune() {
-		// TODO Auto-generated method stub
 		return seeStar.getFortune();
 	}
 

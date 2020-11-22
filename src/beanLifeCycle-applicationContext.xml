@@ -1,35 +1,29 @@
-package com.luv2code.springdemo;
-
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-public class HelloSpringApp {
-
-	public static void main(String[] args) {
-		
-		// load the spring configuration file
-		ClassPathXmlApplicationContext context = 
-				new ClassPathXmlApplicationContext("applicationContext.xml");
-		
-		// retrieve bean from spring container
-		Coach theCoach = context.getBean("myBadmintonCoach", Coach.class);
-		
-		// call methods on the bean
-		System.out.println(theCoach.getDailyWorkout());
-		
-		// let's call our new method for fortunes
-		System.out.println(theCoach.getDailyFortune());
-		
-		// close the context
-		context.close();
-		
-
-	}
-
-}
-
-
-
-
-
-
-
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+	<!-- Define your beans here --> 
+	
+	<!-- define the dependency -->
+	<bean id="myFortuneService"
+    	class="com.luv2code.springdemo.StarFortuneService">
+    </bean>
+    
+    <bean id="myCoach"
+    	class="com.luv2code.springdemo.TrackCoach"
+    	init-method="doMyStartupStuff"
+    	destroy-method="doMyCleanupStuffYoYo">
+    	
+    	<!-- set up constructor injection -->
+    	<constructor-arg ref="myFortuneService" />
+    	
+  
+    	
+    </bean>
+    
+</beans>
